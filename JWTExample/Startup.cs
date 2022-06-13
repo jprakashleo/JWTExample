@@ -34,6 +34,8 @@ namespace JWTExample
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+
+            // we need to add middleware to service first
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
@@ -69,6 +71,11 @@ namespace JWTExample
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+            
+            // Then i need to use middleware that added into service.
+            // On controller i need to write attribute for authentication
+            // We will not add to the page like generating code otherwise have to pass token for that page also.
+
             app.UseAuthentication();
 
             app.UseMvc(routes =>

@@ -24,10 +24,17 @@ namespace JWTExample.Controllers
         }
         public string Get()
         {
+
+            //this is user Shiv
+            //Normally we need to fetch data for login then verify with login table, then need to create JWT
+
             return GenerateJwtToken("Shiv");
         }
         private string GenerateJwtToken(string userName)
         {
+            //this is standard piece of code for JWT
+            //reading simply values from appsetting.json
+
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_configuration["Jwt:key"]);
             var tokenDescriptor = new SecurityTokenDescriptor
